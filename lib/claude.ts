@@ -65,7 +65,7 @@ Return JSON only: { "title": "...", "description": "..." }`;
       Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.0-flash",
       max_tokens: 512,
       response_format: { type: "json_object" },
       messages: [{ role: "user", content: prompt }],
