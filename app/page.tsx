@@ -105,13 +105,13 @@ export default function Home() {
   return (
     <>
       {/* ── 1. Hero ──────────────────────────────────────────────────── */}
-      <section className="min-h-[92vh] flex flex-col items-center justify-center text-center px-6 pt-8 pb-20">
+      <section className="min-h-[92vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-8 pb-20">
         <div className="fade-up fade-up-1 mb-6">
           <Image src="/nutragive_logo.png" width={160} height={160} alt="NutraGive logo" className="w-40 h-40" />
         </div>
 
         <h1
-          className="fade-up fade-up-2 text-5xl sm:text-6xl font-semibold text-green-900 mb-6 leading-tight max-w-2xl"
+          className="fade-up fade-up-2 text-4xl sm:text-5xl md:text-6xl font-semibold text-green-900 mb-6 leading-tight max-w-2xl"
           style={{ fontFamily: "var(--font-lora), serif" }}
         >
           Give the gift of a meal.
@@ -121,16 +121,16 @@ export default function Home() {
           NutraGive connects caring donors with families in need. Every dollar becomes real food — delivered right to their door.
         </p>
 
-        <div className="fade-up fade-up-4 flex flex-col sm:flex-row gap-4">
+        <div className="fade-up fade-up-4 flex flex-col sm:flex-row gap-4 w-full max-w-xs sm:max-w-none sm:w-auto">
           <Link
             href="/browse"
-            className="bg-green-700 text-white text-base font-medium px-8 py-4 rounded-full hover:bg-green-800 transition shadow-sm btn-glow"
+            className="bg-green-700 text-white text-base font-medium px-8 py-4 rounded-full hover:bg-green-800 transition shadow-sm btn-glow text-center touch-manipulation"
           >
             Start Giving
           </Link>
           <Link
             href="/request/new"
-            className="bg-white text-green-800 text-base font-medium px-8 py-4 rounded-full border border-green-200 hover:border-green-400 hover:bg-green-50 transition shadow-sm btn-glow"
+            className="bg-white text-green-800 text-base font-medium px-8 py-4 rounded-full border border-green-200 hover:border-green-400 hover:bg-green-50 transition shadow-sm btn-glow text-center touch-manipulation"
           >
             Request Funds
           </Link>
@@ -138,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* ── 2. Stats ─────────────────────────────────────────────────── */}
-      <section className="bg-white py-20 px-6">
+      <section className="bg-white py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <RevealOnScroll className="text-center mb-14">
             <p className="text-xs font-medium uppercase tracking-widest text-green-600 mb-3">The reality</p>
@@ -168,17 +168,17 @@ export default function Home() {
       </section>
 
       {/* ── 3. How It Works — Requesters ─────────────────────────────── */}
-      <section className="py-24 px-6">
+      <section className="py-16 sm:py-24 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
           <RevealOnScroll className="mb-10">
             <h2
-              className="text-4xl sm:text-5xl font-semibold text-green-900 leading-tight mb-2"
+              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-green-900 leading-tight mb-2"
               style={{ fontFamily: "var(--font-lora), serif" }}
             >
               Get Funded.
             </h2>
             <p
-              className="text-4xl sm:text-5xl font-semibold text-green-600 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-green-600 leading-tight"
               style={{ fontFamily: "var(--font-lora), serif" }}
             >
               It&apos;s as easy as six steps.
@@ -223,17 +223,17 @@ export default function Home() {
       </section>
 
       {/* ── 4. How It Works — Donors ─────────────────────────────────── */}
-      <section className="bg-green-50 py-24 px-6">
+      <section className="bg-green-50 py-16 sm:py-24 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
           <RevealOnScroll className="mb-10">
             <h2
-              className="text-4xl sm:text-5xl font-semibold text-green-900 leading-tight mb-2"
+              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-green-900 leading-tight mb-2"
               style={{ fontFamily: "var(--font-lora), serif" }}
             >
               Make a difference.
             </h2>
             <p
-              className="text-4xl sm:text-5xl font-semibold text-green-600 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-green-600 leading-tight"
               style={{ fontFamily: "var(--font-lora), serif" }}
             >
               In three clicks.
@@ -303,25 +303,25 @@ export default function Home() {
         </section>
 
       {/* ── 6. Closing CTA ───────────────────────────────────────────── */}
-      <section className="bg-green-900 py-24 px-6">
+      <section className="bg-green-900 py-16 sm:py-24 px-4 sm:px-6">
         <RevealOnScroll className="max-w-2xl mx-auto text-center">
           <h2
-            className="text-4xl sm:text-5xl font-semibold text-white mb-4 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-4 leading-tight"
             style={{ fontFamily: "var(--font-lora), serif" }}
           >
             Every meal matters.
           </h2>
           <p className="text-green-200 text-lg mb-10">Start today.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-xs sm:max-w-none mx-auto">
             <Link
               href="/browse"
-              className="bg-white text-green-900 font-medium px-8 py-4 rounded-full hover:bg-green-50 transition btn-glow"
+              className="bg-white text-green-900 font-medium px-8 py-4 rounded-full hover:bg-green-50 transition btn-glow text-center touch-manipulation"
             >
               Start Giving
             </Link>
             <Link
               href="/request/new"
-              className="border border-white text-white font-medium px-8 py-4 rounded-full hover:bg-white/10 transition"
+              className="border border-white text-white font-medium px-8 py-4 rounded-full hover:bg-white/10 transition text-center touch-manipulation"
             >
               Request Funds
             </Link>

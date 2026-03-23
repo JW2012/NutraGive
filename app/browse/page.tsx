@@ -12,7 +12,7 @@ export default async function BrowsePage() {
   const requests = (data as DbRequest[] | null) ?? [];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <div className="mb-10 text-center">
         <h1
           className="text-3xl font-semibold text-green-900 mb-2"

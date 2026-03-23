@@ -38,6 +38,7 @@ export default function BrowseClient({ requests }: { requests: DbRequest[] }) {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [page, setPage] = useState(1);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const PAGE_SIZE = 9;
   const filtersActive = search.trim() !== "" || activeTags.size > 0 || minPrice !== "" || maxPrice !== "";
@@ -111,11 +112,94 @@ export default function BrowseClient({ requests }: { requests: DbRequest[] }) {
         />
       </div>
 
+      {/* Mobile filter toggle */}
+      <div className="sm:hidden mb-4">
+        <button
+          onClick={() => setFiltersOpen((o) => !o)}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-2xl border border-stone-200 bg-white text-sm font-medium text-stone-700 hover:bg-stone-50 transition touch-manipulation"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+            <path d="M4 6h16M7 12h10M10 18h4" />
+          </svg>
+          Filters
+          {activeTags.size > 0 && (
+            <span className="ml-1 bg-green-700 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center shrink-0">
+              {activeTags.size}
+            </span>
+          )}
+          {filtersOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 ml-auto">
+              <path d="m18 15-6-6-6 6"/>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 ml-auto">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          )}
+        </button>
+
+        {/* Mobile filter panel */}
+        {filtersOpen && (
+          <div className="mt-3 bg-white border border-stone-100 rounded-3xl p-4 shadow-sm flex flex-col gap-5">
+            <div>
+              <p className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-3">Price</p>
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm">$</span>
+                  <input
+                    type="number"
+                    min="0"
+                    value={minPrice}
+                    onChange={(e) => applyFilter(setMinPrice)(e.target.value)}
+                    placeholder="Min"
+                    className="w-full border border-stone-200 rounded-xl pl-6 pr-2 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-300 bg-white"
+                  />
+                </div>
+                <div className="relative flex-1">
+                  <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm">$</span>
+                  <input
+                    type="number"
+                    min="0"
+                    value={maxPrice}
+                    onChange={(e) => applyFilter(setMaxPrice)(e.target.value)}
+                    placeholder="Max"
+                    className="w-full border border-stone-200 rounded-xl pl-6 pr-2 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-300 bg-white"
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-3">Tags</p>
+              <div className="flex flex-wrap gap-2">
+                {ALL_TAGS.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleTag(tag)}
+                    className={`text-xs px-3 py-2 rounded-full border font-medium transition touch-manipulation ${
+                      activeTags.has(tag)
+                        ? "bg-green-700 text-white border-green-700"
+                        : `${TAG_COLORS[tag]} hover:opacity-80`
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {filtersActive && (
+              <button onClick={clearFilters} className="text-xs text-stone-400 hover:text-stone-600 transition text-left">
+                Clear all filters
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+
       {/* Sidebar + grid layout */}
       <div className="flex gap-6 items-start">
 
-        {/* Left sidebar — filters */}
-        <aside className="w-52 shrink-0">
+        {/* Left sidebar — filters (desktop only) */}
+        <aside className="hidden sm:block w-52 shrink-0">
           <div className="bg-white border border-stone-100 rounded-3xl p-5 shadow-sm flex flex-col gap-6">
 
             {/* Price range */}
@@ -192,7 +276,7 @@ export default function BrowseClient({ requests }: { requests: DbRequest[] }) {
               </button>
             </div>
           ) : (
-            <div className="grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
               {paginated.map((r) => (
                 <div key={r.id} className="bg-white border border-stone-100 rounded-3xl p-6 shadow-sm flex flex-col gap-4 hover:shadow-md transition">
                   <div className="flex items-start justify-between">
@@ -232,7 +316,7 @@ export default function BrowseClient({ requests }: { requests: DbRequest[] }) {
                     </div>
                   )}
 
-                  <Link href={`/give/${r.id}`} className="mt-auto block text-center bg-green-700 text-white text-sm font-medium py-3 rounded-full hover:bg-green-800 transition btn-glow">
+                  <Link href={`/give/${r.id}`} className="mt-auto block text-center bg-green-700 text-white text-sm font-medium py-3.5 rounded-full hover:bg-green-800 transition btn-glow touch-manipulation">
                     Learn more
                   </Link>
                 </div>
