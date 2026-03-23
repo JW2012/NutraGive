@@ -77,6 +77,8 @@ Return JSON only: { "title": "...", "description": "..." }`;
 
   const data = await res.json();
   const text = data.choices[0].message.content.trim();
-  const json = text.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
-  return JSON.parse(json) as { title: string; description: string };
+  // Extract JSON object even if model wraps it in markdown or extra prose
+  const match = text.match(/\{[\s\S]*\}/);
+  if (!match) throw new Error(`No JSON found in response: ${text}`);
+  return JSON.parse(match[0]) as { title: string; description: string };
 }

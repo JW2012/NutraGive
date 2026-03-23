@@ -20,7 +20,8 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json(result);
   } catch (e) {
-    console.error("AI assist error:", e);
-    return NextResponse.json({ error: "Failed to generate request" }, { status: 500 });
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error("AI assist error:", msg);
+    return NextResponse.json({ error: "Failed to generate request", detail: msg }, { status: 500 });
   }
 }
