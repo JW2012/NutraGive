@@ -6,7 +6,6 @@ NutraGive is a community-driven food assistance platform that connects donors wi
   - Framework: Next.js 16 (App Router, server + client components)                                                                                                                                 
   - Frontend: React 19, Tailwind CSS v4                                                                                                                                                            
   - Backend: Supabase (PostgreSQL, Row Level Security, Auth)                                                                                                                                       
-  - Payments: Stripe                                                                                                                                                                               
   - AI: Featherless AI (Meta Llama 3.1 8B) — request generation + support chatbot                                                                                                                  
-  - Email: Resend — transactional funding notifications                                                                                                                                            
+  - Email: Brevo — transactional funding notifications                                                                                                                                            
   - Language: TypeScript           
