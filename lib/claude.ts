@@ -58,25 +58,24 @@ Write a short, clear title (max 10 words) and a one-sentence description for the
 
 Return JSON only: { "title": "...", "description": "..." }`;
 
-  const res = await fetch("https://api.featherless.ai/v1/chat/completions", {
+  const res = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.FEATHERLESS_API_KEY}`,
+      Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "meta-llama/Meta-Llama-3.1-8B-Instruct",
+      model: "gemini-2.0-flash",
       max_tokens: 512,
+      response_format: { type: "json_object" },
       messages: [{ role: "user", content: prompt }],
     }),
   });
 
   if (!res.ok) {
-    throw new Error(`Featherless API error: ${res.status}`);
+    throw new Error(`Gemini API error: ${res.status}`);
   }
 
   const data = await res.json();
-  const text = data.choices[0].message.content.trim();
-  const json = text.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
-  return JSON.parse(json) as { title: string; description: string };
+  return JSON.parse(data.choices[0].message.content) as { title: string; description: string };
 }
