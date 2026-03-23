@@ -38,14 +38,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid messages" }, { status: 400 });
   }
 
-  const res = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
+  const res = await fetch("https://api.featherless.ai/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
+      Authorization: `Bearer ${process.env.FEATHERLESS_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "gemini-2.0-flash",
+      model: "Qwen/Qwen2.5-7B-Instruct",
       max_tokens: 300,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
