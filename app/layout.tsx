@@ -20,6 +20,9 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "NutraGive — Food for Those Who Need It",
   description: "Help reduce malnutrition by sponsoring food requests in your community.",
+  verification: {
+    google: "f6O1w6w6g2k3BDm9PaJLO39wX09K2PlyPlbgkjkOx0k",
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
