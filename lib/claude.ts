@@ -54,6 +54,8 @@ Here is the information about this person's situation:
 - Urgency: ${URGENCY_LABELS[params.urgency] ?? params.urgency}
 - Their situation in their own words: "${params.situation}"
 
+The situation may be written in any language — always translate it and write your response in English only.
+
 Write a short, clear title (max 10 words) and a one-sentence description for their food request. The description must be written in first person as if the person is speaking directly (e.g. "I'm a single mom feeding three kids and we've run out of groceries."). Keep it warm, honest, and concise.
 
 Return JSON only: { "title": "...", "description": "..." }`;
