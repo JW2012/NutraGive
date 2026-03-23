@@ -55,7 +55,9 @@ export async function POST(req: NextRequest) {
   });
 
   if (!res.ok) {
-    return NextResponse.json({ error: "AI unavailable" }, { status: 500 });
+    const errBody = await res.text();
+    console.error("[chat] Gemini error", res.status, errBody);
+    return NextResponse.json({ error: "AI unavailable", detail: errBody, status: res.status }, { status: 500 });
   }
 
   const data = await res.json();
