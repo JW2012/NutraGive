@@ -65,7 +65,7 @@ Return JSON only: { "title": "...", "description": "..." }`;
       Authorization: `Bearer ${process.env.FEATHERLESS_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "Qwen/Qwen2.5-7B-Instruct",
+      model: "meta-llama/Meta-Llama-3.1-8B-Instruct",
       max_tokens: 512,
       messages: [{ role: "user", content: prompt }],
     }),

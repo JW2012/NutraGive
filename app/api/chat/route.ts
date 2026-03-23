@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       Authorization: `Bearer ${process.env.FEATHERLESS_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "Qwen/Qwen2.5-7B-Instruct",
+      model: "meta-llama/Meta-Llama-3.1-8B-Instruct",
       max_tokens: 300,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
