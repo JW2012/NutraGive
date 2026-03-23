@@ -53,13 +53,13 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-3 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
       {/* Chat panel */}
       <div
-        className={`flex flex-col bg-white border border-stone-200 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 origin-bottom-right ${
+        className={`flex flex-col bg-white border border-stone-200 rounded-3xl shadow-xl overflow-hidden transition-all duration-300 origin-bottom-right pointer-events-auto ${
           open
             ? "opacity-100 scale-100 w-[calc(100vw-1.5rem)] sm:w-96 h-[72dvh] sm:h-[500px] max-h-[600px]"
-            : "opacity-0 scale-90 w-[calc(100vw-1.5rem)] sm:w-96 h-[72dvh] sm:h-[500px] max-h-[600px] pointer-events-none"
+            : "opacity-0 scale-90 w-0 h-0 overflow-hidden"
         }`}
       >
         {/* Header */}
@@ -131,7 +131,7 @@ export default function ChatWidget() {
       {/* Bubble toggle */}
       <button
         onClick={() => setOpen((o) => !o)}
-        className="w-14 h-14 sm:w-14 sm:h-14 rounded-full bg-green-700 hover:bg-green-800 shadow-lg flex items-center justify-center transition btn-glow touch-manipulation"
+        className="w-14 h-14 rounded-full bg-green-700 hover:bg-green-800 shadow-lg flex items-center justify-center transition btn-glow touch-manipulation pointer-events-auto"
       >
         {open ? (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-white">
